@@ -1,5 +1,7 @@
 node_modules/
 **/dist/
+**/.next/
 .data/
 package-lock.json
 docs/openapi.json
+apps/web/next-env.d.ts

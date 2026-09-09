@@ -4,6 +4,29 @@
 
 [Условия задания](docs/ASSIGNMENT.md) · [Работа с API](docs/INTEGRATION.md) · [Критерии оценки](docs/EVALUATION.md)
 
+## Решение
+
+Фронтенд лежит в [`apps/web`](apps/web) — Next.js 16 (App Router) и TypeScript.
+Устройство решения, проверенные сценарии, принятые решения и недоработки описаны
+в [apps/web/README.md](apps/web/README.md).
+
+```sh
+npm ci
+npm run dev        # бэкенд, http://localhost:4000
+npm run dev:web    # фронтенд, http://localhost:3000 (во втором терминале)
+```
+
+| Команда                 | Что делает                   |
+| ----------------------- | ---------------------------- |
+| `npm run dev:web`       | дев-сервер фронтенда         |
+| `npm run build:web`     | продакшен-сборка фронтенда   |
+| `npm run start:web`     | запуск собранного фронтенда  |
+| `npm run typecheck:web` | проверка типов               |
+| `npm run test:web`      | юнит-тесты доменных правил   |
+| `npm run e2e:web`       | сквозные сценарии в браузере |
+
+Корневые `npm run dev`, `build`, `test` и `check` по-прежнему относятся к бэкенду.
+
 ## Запуск
 
 Потребуются Node.js 24.x и npm 11.x. Отдельная база данных и ключи внешних сервисов не нужны.

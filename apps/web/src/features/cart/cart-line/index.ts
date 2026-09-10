@@ -1,1 +1,1 @@
-export * from './cart-line.component';
+export * from './cart-line.module';

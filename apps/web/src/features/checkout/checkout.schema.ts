@@ -1,55 +1,54 @@
-import { z } from 'zod';
+import { ObjectSchema, object, string } from 'yup';
 
-import { CheckoutFormValues } from 'domain/checkout';
+import { AddressFormValues, CheckoutFormValues, DeliveryFormValues } from 'domain/checkout';
+import { DeliveryMethodId, PaymentMethod } from 'domain/contracts';
 
-export const deliveryFormSchema = z
-  .object({
-    address: z.object({
-      apartment: z.string().trim().max(20, 'Не длиннее 20 символов'),
-      city: z.string().trim().max(100, 'Не длиннее 100 символов'),
-      house: z.string().trim().max(20, 'Не длиннее 20 символов'),
-      street: z.string().trim().max(150, 'Не длиннее 150 символов'),
+const PHONE_PATTERN = /^\+[1-9]\d{9,14}$/;
+
+const EMAIL_MESSAGE = 'Укажите электронную почту в формате name@example.com';
+const NAME_MESSAGE = 'Укажите имя, минимум 2 символа';
+const PHONE_MESSAGE = 'Телефон в формате +79990000000';
+
+// Ограничения длины повторяют серверные, поэтому лишний запрос не уходит.
+const text = (max: number) => string().trim().max(max, `Не длиннее ${max} символов`).defined();
+
+// Адрес заполняется только при курьерской доставке: базовая схема проверяет длину,
+// обязательность добавляется ниже через when().
+const addressSchema: ObjectSchema<AddressFormValues> = object({
+  apartment: text(20),
+  city: text(100),
+  house: text(20),
+  street: text(150),
+});
+
+const courierAddressSchema: ObjectSchema<AddressFormValues> = addressSchema.shape({
+  city: text(100).min(2, 'Укажите город'),
+  house: text(20).required('Укажите дом'),
+  street: text(150).min(2, 'Укажите улицу'),
+});
+
+export const deliveryFormSchema: ObjectSchema<DeliveryFormValues> = object({
+  address: addressSchema.when('method', {
+    is: 'courier',
+    then: () => courierAddressSchema,
+  }),
+  method: string<DeliveryMethodId>().oneOf(['courier', 'pickup']).defined(),
+  pickupPointId: string()
+    .defined()
+    .when('method', {
+      is: 'pickup',
+      then: (schema) => schema.required('Выберите пункт выдачи'),
     }),
-    method: z.enum(['pickup', 'courier']),
-    pickupPointId: z.string(),
-  })
-  .superRefine((values, ctx) => {
-    if (values.method === 'pickup') {
-      if (!values.pickupPointId) {
-        ctx.addIssue({ code: 'custom', message: 'Выберите пункт выдачи', path: ['pickupPointId'] });
-      }
+});
 
-      return;
-    }
-
-    if (values.address.city.length < 2) {
-      ctx.addIssue({ code: 'custom', message: 'Укажите город', path: ['address', 'city'] });
-    }
-
-    if (values.address.street.length < 2) {
-      ctx.addIssue({ code: 'custom', message: 'Укажите улицу', path: ['address', 'street'] });
-    }
-
-    if (!values.address.house) {
-      ctx.addIssue({ code: 'custom', message: 'Укажите дом', path: ['address', 'house'] });
-    }
-  });
-
-export const checkoutSchema = z.object({
-  customer: z.object({
-    email: z.email('Укажите электронную почту в формате name@example.com').max(150),
-    name: z
-      .string()
-      .trim()
-      .min(2, 'Укажите имя, минимум 2 символа')
-      .max(100, 'Не длиннее 100 символов'),
-    phone: z
-      .string()
-      .trim()
-      .regex(/^\+[1-9]\d{9,14}$/, 'Телефон в формате +79990000000'),
+export const checkoutSchema: ObjectSchema<CheckoutFormValues> = object({
+  customer: object({
+    email: text(150).email(EMAIL_MESSAGE).required(EMAIL_MESSAGE),
+    name: text(100).min(2, NAME_MESSAGE).required(NAME_MESSAGE),
+    phone: text(20).matches(PHONE_PATTERN, PHONE_MESSAGE).required(PHONE_MESSAGE),
   }),
   delivery: deliveryFormSchema,
-  paymentMethod: z.enum(['card', 'cash_on_delivery']),
+  paymentMethod: string<PaymentMethod>().oneOf(['card', 'cash_on_delivery']).defined(),
 });
 
 export const DEFAULT_CHECKOUT_VALUES: CheckoutFormValues = {

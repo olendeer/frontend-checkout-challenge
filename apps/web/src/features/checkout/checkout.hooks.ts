@@ -1,6 +1,6 @@
 'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
@@ -30,7 +30,7 @@ import { checkoutSchema, DEFAULT_CHECKOUT_VALUES, deliveryFormSchema } from './c
 const DELIVERY_DEBOUNCE_MS = 400;
 
 const toValidDelivery = (values: DeliveryFormValues): Delivery | null =>
-  deliveryFormSchema.safeParse(values).success ? toDelivery(values) : null;
+  deliveryFormSchema.isValidSync(values) ? toDelivery(values) : null;
 
 export const useCheckoutModule = () => {
   const router = useRouter();
@@ -42,7 +42,7 @@ export const useCheckoutModule = () => {
   const form = useForm<CheckoutFormValues>({
     defaultValues: DEFAULT_CHECKOUT_VALUES,
     mode: 'onTouched',
-    resolver: zodResolver(checkoutSchema),
+    resolver: yupResolver(checkoutSchema),
   });
 
   const deliveryValues = useWatch({ control: form.control, name: 'delivery' });

@@ -9,6 +9,7 @@ export default defineConfig({
       core: src('core'),
       data: src('data'),
       domain: src('domain'),
+      features: src('features'),
     },
   },
   test: {

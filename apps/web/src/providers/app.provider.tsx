@@ -7,7 +7,7 @@ import { createQueryClient } from 'query/query-client';
 
 import { createServices } from './services';
 import { ServicesContext } from './services.context';
-import { SessionGate } from './session-gate.component';
+import { SessionGate } from './session-gate';
 
 export const AppProvider = ({ children }: PropsWithChildren) => {
   const [services] = useState(() => createServices());

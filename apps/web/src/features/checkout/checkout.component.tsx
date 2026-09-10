@@ -15,7 +15,7 @@ import {
 } from 'ui-kit';
 
 import { useCheckoutModule } from './checkout.hooks';
-import { OrderSummary } from './order-summary.component';
+import { OrderSummary } from './order-summary';
 import styles from './checkout.module.css';
 
 const SUBMIT_LABEL = {

@@ -11,7 +11,7 @@ import { getIsPaymentCancelled, getIsPaymentDeclined } from 'domain/payment';
 import { PaymentForm } from 'features/payment';
 import { Alert, Button, Card, LinkButton, Spinner, StatusBadge } from 'ui-kit';
 
-import { OrderDetails } from './order-details.component';
+import { OrderDetails } from './order-details';
 import { useOrderModule } from './order.hooks';
 import { getOrderStatusView } from './order.status';
 import styles from './order.module.css';

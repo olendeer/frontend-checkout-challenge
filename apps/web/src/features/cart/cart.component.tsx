@@ -4,7 +4,7 @@ import { getIsCartEmpty } from 'domain/cart';
 import { getErrorMessage } from 'domain/errors';
 import { Alert, Button, Card, EmptyState, LinkButton, Money, Spinner } from 'ui-kit';
 
-import { CartLine } from './cart-line.component';
+import { CartLine } from './cart-line';
 import { useCartModule } from './cart.hooks';
 import styles from './cart.module.css';
 

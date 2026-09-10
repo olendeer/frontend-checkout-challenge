@@ -4,7 +4,7 @@ import { getErrorMessage } from 'domain/errors';
 import { Alert, Button, Card, Spinner } from 'ui-kit';
 
 import { useCatalogModule } from './catalog.hooks';
-import { ProductCard } from './product-card.component';
+import { ProductCard } from './product-card';
 import styles from './catalog.module.css';
 
 export const CatalogModule = () => {

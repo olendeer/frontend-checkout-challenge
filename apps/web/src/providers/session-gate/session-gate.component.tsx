@@ -3,7 +3,7 @@
 import { PropsWithChildren } from 'react';
 
 import { getErrorMessage } from 'domain/errors';
-import { useSessionQuery } from 'query/queries';
+import { useSessionQuery } from 'query/session';
 import { Alert, Button, Spinner } from 'ui-kit';
 
 import styles from './session-gate.module.scss';

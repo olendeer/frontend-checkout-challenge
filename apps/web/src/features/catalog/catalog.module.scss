@@ -1,0 +1,19 @@
+@use 'mixins' as *;
+
+.section {
+  @include stack(var(--space-5));
+}
+
+.heading {
+  font-size: var(--font-size-page-title);
+}
+
+.state {
+  @include loading-state;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-4);
+}

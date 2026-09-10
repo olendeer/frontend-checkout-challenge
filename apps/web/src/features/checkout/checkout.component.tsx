@@ -16,7 +16,7 @@ import {
 
 import { useCheckoutModule } from './checkout.hooks';
 import { OrderSummary } from './order-summary';
-import styles from './checkout.module.css';
+import styles from './checkout.module.scss';
 
 const SUBMIT_LABEL = {
   card: 'Оформить и перейти к оплате',

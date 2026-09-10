@@ -6,7 +6,7 @@ import { Alert, Button, Card, EmptyState, LinkButton, Money, Spinner } from 'ui-
 
 import { CartLine } from './cart-line';
 import { useCartModule } from './cart.hooks';
-import styles from './cart.module.css';
+import styles from './cart.module.scss';
 
 export const CartModule = () => {
   const { cart, changeError, pendingProductId, removeItem, setQuantity, stockIndex } =

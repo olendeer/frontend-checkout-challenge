@@ -1,24 +1,20 @@
+@use 'mixins' as *;
+
 .section {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
+  @include stack(var(--space-5));
 }
 
 .heading {
-  font-size: 26px;
+  font-size: var(--font-size-page-title);
 }
 
 .state {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  color: var(--color-text-muted);
+  @include loading-state;
 }
 
 .summary {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+  @include stack(var(--space-3));
+
   align-self: flex-end;
   width: min(420px, 100%);
 }
@@ -36,5 +32,5 @@
 
 .note {
   color: var(--color-text-muted);
-  font-size: 13px;
+  font-size: var(--font-size-caption);
 }

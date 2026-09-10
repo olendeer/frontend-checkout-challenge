@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import styles from './alert.module.css';
+import styles from './alert.module.scss';
 
 interface AlertProps {
   action?: ReactNode;

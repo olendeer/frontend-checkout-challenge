@@ -1,6 +1,6 @@
 import { forwardRef, InputHTMLAttributes, ReactNode } from 'react';
 
-import styles from './radio-option.module.css';
+import styles from './radio-option.module.scss';
 
 interface RadioOptionProps extends InputHTMLAttributes<HTMLInputElement> {
   description?: ReactNode;

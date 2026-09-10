@@ -4,7 +4,7 @@ import { Quote } from 'domain/contracts';
 import { getErrorMessage } from 'domain/errors';
 import { Alert, Button, Card, Money, Spinner } from 'ui-kit';
 
-import styles from './order-summary.module.css';
+import styles from './order-summary.module.scss';
 
 interface OrderSummaryProps {
   isSubmitting: boolean;

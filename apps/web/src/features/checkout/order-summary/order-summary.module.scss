@@ -1,0 +1,44 @@
+@use 'breakpoints' as *;
+@use 'mixins' as *;
+
+.summary {
+  @include stack(var(--space-4));
+
+  position: sticky;
+  top: 84px;
+
+  @include below($layout-narrow) {
+    position: static;
+  }
+}
+
+.heading {
+  font-size: var(--font-size-section-title);
+}
+
+.rows {
+  @include stack(var(--space-2));
+
+  margin: 0;
+}
+
+.row {
+  @include money-row;
+}
+
+.total {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-size-section-title);
+
+  dt {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+}
+
+.status {
+  min-height: 20px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+}

@@ -6,7 +6,7 @@ import { getErrorMessage } from 'domain/errors';
 import { useSessionQuery } from 'query/queries';
 import { Alert, Button, Spinner } from 'ui-kit';
 
-import styles from './session-gate.module.css';
+import styles from './session-gate.module.scss';
 
 export const SessionGate = ({ children }: PropsWithChildren) => {
   const session = useSessionQuery();

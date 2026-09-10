@@ -2,7 +2,7 @@
 
 import { ReactNode, useEffect, useRef } from 'react';
 
-import styles from './modal.module.css';
+import styles from './modal.module.scss';
 
 interface ModalProps {
   children: ReactNode;

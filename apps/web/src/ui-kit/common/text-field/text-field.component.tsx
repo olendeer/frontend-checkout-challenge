@@ -1,6 +1,6 @@
 import { forwardRef, InputHTMLAttributes, useId } from 'react';
 
-import styles from './text-field.module.css';
+import styles from './text-field.module.scss';
 
 interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;

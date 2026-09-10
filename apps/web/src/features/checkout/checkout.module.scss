@@ -1,0 +1,55 @@
+@use 'breakpoints' as *;
+@use 'mixins' as *;
+
+.layout {
+  @include stack(var(--space-5));
+}
+
+.heading {
+  font-size: var(--font-size-page-title);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  align-items: start;
+  gap: var(--space-5);
+
+  @include below($layout-narrow) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.sections {
+  @include stack(var(--space-4));
+
+  min-width: 0;
+}
+
+.group {
+  @include stack(var(--space-4));
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  padding: 0;
+  font-size: var(--font-size-section-title);
+  font-weight: 700;
+}
+
+.address {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+
+  @include below($layout-mobile) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.state {
+  @include loading-state;
+}

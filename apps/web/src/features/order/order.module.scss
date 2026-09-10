@@ -1,7 +1,7 @@
+@use 'mixins' as *;
+
 .section {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+  @include stack(var(--space-4));
 }
 
 .header {
@@ -14,23 +14,21 @@
 
 .caption {
   color: var(--color-text-muted);
-  font-size: 13px;
+  font-size: var(--font-size-caption);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 .heading {
-  font-size: 26px;
+  font-size: var(--font-size-page-title);
 }
 
 .status {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
+  @include stack(var(--space-3));
 
-.status:empty {
-  display: none;
+  &:empty {
+    display: none;
+  }
 }
 
 .actions {
@@ -40,8 +38,5 @@
 }
 
 .state {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  color: var(--color-text-muted);
+  @include loading-state;
 }

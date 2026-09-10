@@ -1,3 +1,5 @@
+@use 'mixins' as *;
+
 .spinner {
   display: inline-block;
   width: 1em;
@@ -7,16 +9,14 @@
   border-radius: 50%;
   animation: rotate 0.7s linear infinite;
   vertical-align: -0.125em;
+
+  @include reduced-motion {
+    animation-duration: 2s;
+  }
 }
 
 @keyframes rotate {
   to {
     transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .spinner {
-    animation-duration: 2s;
   }
 }

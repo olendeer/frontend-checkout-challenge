@@ -2,7 +2,7 @@ import { formatDelivery } from 'domain/checkout';
 import { Order, PickupPoint } from 'domain/contracts';
 import { Card, Money } from 'ui-kit';
 
-import styles from './order-details.module.css';
+import styles from './order-details.module.scss';
 
 interface OrderDetailsProps {
   order: Order;

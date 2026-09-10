@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import styles from './empty-state.module.css';
+import styles from './empty-state.module.scss';
 
 interface EmptyStateProps {
   action?: ReactNode;

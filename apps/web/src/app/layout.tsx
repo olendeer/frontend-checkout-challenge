@@ -4,8 +4,8 @@ import { ReactNode } from 'react';
 import { AppHeader } from 'features/layout';
 import { AppProvider } from 'providers';
 
-import './globals.css';
-import styles from './layout.module.css';
+import './globals.scss';
+import styles from './layout.module.scss';
 
 export const metadata: Metadata = {
   description: 'Каталог, корзина, оформление заказа и тестовая оплата.',

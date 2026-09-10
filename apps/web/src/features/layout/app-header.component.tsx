@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { useCartQuery } from 'query';
 
-import styles from './app-header.module.css';
+import styles from './app-header.module.scss';
 
 export const AppHeader = () => {
   const cart = useCartQuery();

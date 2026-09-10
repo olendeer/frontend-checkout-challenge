@@ -38,10 +38,10 @@
   color: var(--color-text);
   font-weight: 600;
   text-decoration: none;
-}
 
-.link:hover {
-  background: var(--color-surface-muted);
+  &:hover {
+    background: var(--color-surface-muted);
+  }
 }
 
 .badge {

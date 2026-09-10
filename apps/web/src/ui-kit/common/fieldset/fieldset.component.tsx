@@ -1,6 +1,6 @@
 import { ReactNode, useId } from 'react';
 
-import styles from './fieldset.module.css';
+import styles from './fieldset.module.scss';
 
 interface FieldsetProps {
   children: ReactNode;

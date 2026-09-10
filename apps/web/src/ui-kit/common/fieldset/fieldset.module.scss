@@ -1,3 +1,5 @@
+@use 'mixins' as *;
+
 .fieldset {
   margin: 0;
   padding: 0;
@@ -12,14 +14,12 @@
 }
 
 .options {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+  @include stack(var(--space-2));
 }
 
 .error {
   display: block;
   margin-top: var(--space-2);
   color: var(--color-danger);
-  font-size: 13px;
+  font-size: var(--font-size-caption);
 }

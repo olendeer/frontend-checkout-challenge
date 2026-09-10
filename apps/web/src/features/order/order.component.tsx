@@ -14,7 +14,7 @@ import { Alert, Button, Card, LinkButton, Spinner, StatusBadge } from 'ui-kit';
 import { OrderDetails } from './order-details';
 import { useOrderModule } from './order.hooks';
 import { getOrderStatusView } from './order.status';
-import styles from './order.module.css';
+import styles from './order.module.scss';
 
 interface OrderModuleProps {
   orderId: string;

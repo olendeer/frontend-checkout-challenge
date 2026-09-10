@@ -5,7 +5,7 @@ import { Alert, Button, Card, Spinner } from 'ui-kit';
 
 import { useCatalogModule } from './catalog.hooks';
 import { ProductCard } from './product-card';
-import styles from './catalog.module.css';
+import styles from './catalog.module.scss';
 
 export const CatalogModule = () => {
   const { addToCart, addToCartError, pendingProductId, products, quantityIndex } =

@@ -2,7 +2,7 @@ import { getIsProductAvailable, getMaxQuantity } from 'domain/cart';
 import { Product } from 'domain/contracts';
 import { Button, Card, Money, StatusBadge } from 'ui-kit';
 
-import styles from './product-card.module.css';
+import styles from './product-card.module.scss';
 
 interface ProductCardProps {
   isPending: boolean;

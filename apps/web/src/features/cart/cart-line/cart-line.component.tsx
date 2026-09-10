@@ -1,7 +1,7 @@
 import { CartItem } from 'domain/contracts';
 import { Button, Money } from 'ui-kit';
 
-import styles from './cart-line.module.css';
+import styles from './cart-line.module.scss';
 
 interface CartLineProps {
   isPending: boolean;

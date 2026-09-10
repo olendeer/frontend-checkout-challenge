@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import styles from './status-badge.module.css';
+import styles from './status-badge.module.scss';
 
 interface StatusBadgeProps {
   children: ReactNode;

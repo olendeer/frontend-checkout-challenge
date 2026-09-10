@@ -1,4 +1,4 @@
-import styles from './button.module.css';
+import styles from './button.module.scss';
 
 export type ButtonSize = 'md' | 'sm';
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';

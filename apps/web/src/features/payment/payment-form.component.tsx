@@ -6,7 +6,7 @@ import { getErrorMessage } from 'domain/errors';
 import { Alert, Button, Fieldset, Modal, Money, RadioOption, Spinner } from 'ui-kit';
 import { useSandboxQuery, useStartPaymentMutation } from 'query';
 
-import styles from './payment-form.module.css';
+import styles from './payment-form.module.scss';
 
 interface PaymentFormProps {
   isOpen: boolean;

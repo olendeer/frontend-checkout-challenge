@@ -1,0 +1,41 @@
+@mixin stack($gap) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+@mixin focus-ring($offset: 2px) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: $offset;
+}
+
+@mixin loading-state {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// Строка «подпись — сумма» в итогах расчёта и в деталях заказа.
+@mixin money-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+
+  dt {
+    color: var(--color-text-muted);
+  }
+
+  dd {
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+}

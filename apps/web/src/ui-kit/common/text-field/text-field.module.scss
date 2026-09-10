@@ -1,7 +1,8 @@
+@use 'mixins' as *;
+
 .field {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
+  @include stack(var(--space-1));
+
   min-width: 0;
 }
 
@@ -17,10 +18,10 @@
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-md);
   width: 100%;
-}
 
-.input:hover:not(:disabled) {
-  border-color: var(--color-accent);
+  &:hover:not(:disabled) {
+    border-color: var(--color-accent);
+  }
 }
 
 .invalid {
@@ -29,10 +30,10 @@
 
 .hint {
   color: var(--color-text-muted);
-  font-size: 13px;
+  font-size: var(--font-size-caption);
 }
 
 .error {
   color: var(--color-danger);
-  font-size: 13px;
+  font-size: var(--font-size-caption);
 }

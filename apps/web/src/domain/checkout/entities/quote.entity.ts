@@ -12,8 +12,4 @@ export class Quote {
     public readonly currency: Currency,
     public readonly expiresAt: string,
   ) {}
-
-  get isExpired(): boolean {
-    return new Date(this.expiresAt).getTime() <= Date.now();
-  }
 }

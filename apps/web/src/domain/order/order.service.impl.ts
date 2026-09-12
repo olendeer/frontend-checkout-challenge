@@ -1,8 +1,10 @@
 import { RequestConfig } from 'core/http';
 import { IdempotencyJournal } from 'core/idempotency';
 import { OrdersRepo } from 'data/repositories';
-import { CreateOrder, Order, Payment } from 'domain/contracts';
+import { CreateOrder } from 'domain/contracts';
+import { Payment } from 'domain/payment/entities';
 
+import { Order } from './entities';
 import { OrderService } from './order.service';
 
 const CREATE_ORDER_INTENT = 'order:create';

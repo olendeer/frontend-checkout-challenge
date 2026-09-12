@@ -1,6 +1,5 @@
 'use client';
 
-import { getIsCartEmpty } from 'domain/cart';
 import { getErrorMessage } from 'domain/errors';
 import { Alert, Button, Card, EmptyState, LinkButton, Money, Spinner } from 'ui-kit';
 
@@ -35,7 +34,7 @@ export const CartModule = () => {
     );
   }
 
-  if (getIsCartEmpty(cart.data)) {
+  if (!cart.data || cart.data.isEmpty) {
     return (
       <section className={styles.section}>
         <h1 className={styles.heading}>Корзина</h1>

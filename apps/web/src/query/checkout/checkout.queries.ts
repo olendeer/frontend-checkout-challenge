@@ -2,7 +2,8 @@
 
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
-import { CheckoutOptions, Delivery, Quote } from 'domain/contracts';
+import { CheckoutOptions, Quote } from 'domain/checkout';
+import { Delivery } from 'domain/contracts';
 import { useCheckoutService } from 'providers/services.hooks';
 
 import { queryKeys } from '../query-keys';

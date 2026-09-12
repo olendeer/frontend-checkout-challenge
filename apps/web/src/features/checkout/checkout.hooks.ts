@@ -7,13 +7,7 @@ import { useEffect, useMemo } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 
 import { applyFieldErrors } from 'core/form';
-import { getIsCartEmpty } from 'domain/cart';
-import {
-  CheckoutFormValues,
-  DeliveryFormValues,
-  getPickupPoints,
-  toDelivery,
-} from 'domain/checkout';
+import { CheckoutFormValues, DeliveryFormValues, toDelivery } from 'domain/checkout';
 import { Delivery, PickupPoint } from 'domain/contracts';
 import { ApiErrorCodes, getIsErrorCode } from 'domain/errors';
 import { useDebouncedValue } from 'hooks';
@@ -53,8 +47,15 @@ export const useCheckoutModule = () => {
     [deliveryKey],
   );
 
-  const quote = useQuoteQuery(delivery, cart.data?.version, !getIsCartEmpty(cart.data));
-  const pickupPoints = useMemo<PickupPoint[]>(() => getPickupPoints(options.data), [options.data]);
+  const quote = useQuoteQuery(
+    delivery,
+    cart.data?.version,
+    Boolean(cart.data && !cart.data.isEmpty),
+  );
+  const pickupPoints = useMemo<PickupPoint[]>(
+    () => options.data?.pickupPoints ?? [],
+    [options.data],
+  );
 
   useEffect(() => {
     if (pickupPoints.length > 0 && !form.getValues('delivery.pickupPointId')) {

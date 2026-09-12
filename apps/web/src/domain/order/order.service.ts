@@ -1,5 +1,8 @@
 import { RequestConfig } from 'core/http';
-import { CreateOrder, Order, Payment } from 'domain/contracts';
+import { CreateOrder } from 'domain/contracts';
+import { Payment } from 'domain/payment/entities';
+
+import { Order } from './entities';
 
 export interface OrderService {
   createOrder: (payload: CreateOrder, config?: RequestConfig) => Promise<Order>;

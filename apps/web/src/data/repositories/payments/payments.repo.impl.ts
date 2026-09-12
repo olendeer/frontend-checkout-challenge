@@ -1,6 +1,10 @@
+import type { Static } from '@sinclair/typebox';
+import type { Payment as PaymentResponse, SandboxSchema, Simulation } from '@checkout/contracts';
+
 import { HttpClient, RequestConfig } from 'core/http';
+import { PaymentDto, SandboxDto } from 'data/dto/payment';
 import { API } from 'data/endpoints';
-import { Payment, Sandbox, Simulation } from 'domain/contracts';
+import { Payment, Sandbox } from 'domain/payment/entities';
 
 import { PaymentsRepo, SimulationResult } from './payments.repo';
 import { SimulatePaymentPayload } from './payments.repo.payload';
@@ -9,25 +13,31 @@ export class PaymentsRepoImpl implements PaymentsRepo {
   constructor(private readonly _http: HttpClient) {}
 
   getSandbox = async (config?: RequestConfig): Promise<Sandbox> => {
-    const response = await this._http.get<Sandbox>(API.sandbox.toUrl(), config);
+    const response = await this._http.get<Static<typeof SandboxSchema>>(
+      API.sandbox.toUrl(),
+      config,
+    );
 
-    return response.data;
+    return SandboxDto.mapToEntity(response.data);
   };
 
   createPayment = async (orderId: string, config: RequestConfig): Promise<Payment> => {
-    const response = await this._http.post<Payment>(
+    const response = await this._http.post<PaymentResponse>(
       API.orders.payments.toUrl({ orderId }),
       {},
       config,
     );
 
-    return response.data;
+    return PaymentDto.mapToEntity(response.data);
   };
 
   getPayment = async (paymentId: string, config?: RequestConfig): Promise<Payment> => {
-    const response = await this._http.get<Payment>(API.payments.byId.toUrl({ paymentId }), config);
+    const response = await this._http.get<PaymentResponse>(
+      API.payments.byId.toUrl({ paymentId }),
+      config,
+    );
 
-    return response.data;
+    return PaymentDto.mapToEntity(response.data);
   };
 
   simulate = async (

@@ -1,5 +1,5 @@
-import { formatDelivery } from 'domain/checkout';
-import { Order, PickupPoint } from 'domain/contracts';
+import { PickupPoint } from 'domain/contracts';
+import { Order } from 'domain/order';
 import { Card, Money } from 'ui-kit';
 
 import styles from './order-details.module.scss';
@@ -30,7 +30,7 @@ export const OrderDetails = ({ order, pickupPoints }: OrderDetailsProps) => (
 
     <section className={styles.block}>
       <h2 className={styles.heading}>Доставка</h2>
-      <p>{formatDelivery(order.delivery, pickupPoints)}</p>
+      <p>{order.formatDelivery(pickupPoints)}</p>
     </section>
 
     <section className={styles.block}>

@@ -8,7 +8,7 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import { Cart } from 'domain/contracts';
+import { Cart } from 'domain/cart';
 import { useCartService } from 'providers/services.hooks';
 
 import { queryKeys } from '../query-keys';

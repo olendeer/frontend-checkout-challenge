@@ -1,5 +1,4 @@
-import { Order } from 'domain/contracts';
-import { getIsOrderConfirmedOnDelivery, getIsOrderPaid, getIsPaymentPending } from 'domain/order';
+import { Order } from 'domain/order';
 
 interface OrderStatusView {
   label: string;
@@ -7,15 +6,15 @@ interface OrderStatusView {
 }
 
 export const getOrderStatusView = (order: Order): OrderStatusView => {
-  if (getIsOrderPaid(order)) {
+  if (order.isPaid) {
     return { label: 'Оплачен', tone: 'success' };
   }
 
-  if (getIsOrderConfirmedOnDelivery(order)) {
+  if (order.isConfirmedOnDelivery) {
     return { label: 'Оформлен, оплата при получении', tone: 'success' };
   }
 
-  if (getIsPaymentPending(order)) {
+  if (order.isPaymentPending) {
     return { label: 'Ожидаем подтверждение оплаты', tone: 'warning' };
   }
 

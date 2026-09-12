@@ -8,7 +8,8 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import { Payment, Sandbox, Scenario } from 'domain/contracts';
+import { Scenario } from 'domain/contracts';
+import { Payment, Sandbox } from 'domain/payment';
 import { usePaymentService } from 'providers/services.hooks';
 
 import { queryKeys } from '../query-keys';

@@ -1,5 +1,7 @@
+import type { Simulation } from '@checkout/contracts';
+
 import { RequestConfig } from 'core/http';
-import { Payment, Sandbox, Simulation } from 'domain/contracts';
+import { Payment, Sandbox } from 'domain/payment/entities';
 
 import { SimulatePaymentPayload } from './payments.repo.payload';
 

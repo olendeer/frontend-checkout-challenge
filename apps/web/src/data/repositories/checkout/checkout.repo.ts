@@ -1,5 +1,5 @@
 import { RequestConfig } from 'core/http';
-import { CheckoutOptions, Quote } from 'domain/contracts';
+import { CheckoutOptions, Quote } from 'domain/checkout/entities';
 
 import { CreateQuotePayload } from './checkout.repo.payload';
 

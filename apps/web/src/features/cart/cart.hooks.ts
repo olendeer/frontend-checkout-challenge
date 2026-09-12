@@ -2,7 +2,8 @@
 
 import { useMemo } from 'react';
 
-import { getStockIndex, QuantityIndex } from 'domain/cart';
+import { QuantityIndex } from 'domain/cart';
+import { Product } from 'domain/catalog';
 import {
   useCartQuery,
   useProductsQuery,
@@ -25,7 +26,7 @@ export const useCartModule = (): CartModuleState => {
   const setCartItem = useSetCartItemMutation();
   const removeCartItem = useRemoveCartItemMutation();
 
-  const stockIndex = useMemo(() => getStockIndex(products.data), [products.data]);
+  const stockIndex = useMemo(() => Product.toStockIndex(products.data), [products.data]);
 
   const getPendingProductId = (): string | null => {
     if (setCartItem.isPending) {

@@ -1,8 +1,8 @@
 import { RequestConfig } from 'core/http';
 import { CatalogRepo } from 'data/repositories';
-import { Product } from 'domain/contracts';
 
 import { CatalogService } from './catalog.service';
+import { Product } from './entities';
 
 export class CatalogServiceImpl implements CatalogService {
   constructor(private readonly _repo: CatalogRepo) {}

@@ -1,10 +1,10 @@
 import { RequestConfig } from 'core/http';
 import { IdempotencyJournal } from 'core/idempotency';
 import { OrdersRepo, PaymentsRepo } from 'data/repositories';
-import { Payment, Sandbox, Scenario } from 'domain/contracts';
+import { Scenario } from 'domain/contracts';
 import { ApiErrorCodes, getIsErrorCode } from 'domain/errors';
 
-import { getLatestPayment } from './payment.rules';
+import { Payment, Sandbox } from './entities';
 import { PaymentService } from './payment.service';
 
 export class PaymentServiceImpl implements PaymentService {
@@ -22,7 +22,7 @@ export class PaymentServiceImpl implements PaymentService {
   getLatestPayment = async (orderId: string, config?: RequestConfig): Promise<Payment | null> => {
     const payments = await this._ordersRepo.getOrderPayments(orderId, config);
 
-    return getLatestPayment(payments);
+    return Payment.latest(payments);
   };
 
   startPayment = async (orderId: string, scenario: Scenario): Promise<Payment> => {

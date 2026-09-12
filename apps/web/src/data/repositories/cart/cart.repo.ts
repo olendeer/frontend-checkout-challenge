@@ -1,5 +1,6 @@
 import { RequestConfig } from 'core/http';
-import { Cart, CartItem } from 'domain/contracts';
+import { Cart } from 'domain/cart/entities';
+import { CartItem } from 'domain/contracts';
 
 import { SetCartItemPayload } from './cart.repo.payload';
 

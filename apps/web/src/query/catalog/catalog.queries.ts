@@ -2,7 +2,7 @@
 
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
-import { Product } from 'domain/contracts';
+import { Product } from 'domain/catalog';
 import { useCatalogService } from 'providers/services.hooks';
 
 import { queryKeys } from '../query-keys';

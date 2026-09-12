@@ -1,13 +1,6 @@
 'use client';
 
 import { getErrorMessage } from 'domain/errors';
-import {
-  getCanPayOrder,
-  getIsOrderConfirmedOnDelivery,
-  getIsOrderPaid,
-  getIsPaymentPending,
-} from 'domain/order';
-import { getIsPaymentCancelled, getIsPaymentDeclined } from 'domain/payment';
 import { PaymentForm } from 'features/payment';
 import { Alert, Button, Card, LinkButton, Spinner, StatusBadge } from 'ui-kit';
 
@@ -60,39 +53,39 @@ export const OrderModule = ({ orderId }: OrderModuleProps) => {
       </header>
 
       <div aria-live="polite" className={styles.status}>
-        {getIsOrderPaid(order.data) ? (
+        {order.data.isPaid ? (
           <Alert title="Заказ оплачен" tone="success">
             Оплата подтверждена сервером. Мы отправили детали на {order.data.customer.email}.
           </Alert>
         ) : null}
 
-        {getIsOrderConfirmedOnDelivery(order.data) ? (
+        {order.data.isConfirmedOnDelivery ? (
           <Alert title="Заказ оформлен" tone="success">
             Оплата при получении.
           </Alert>
         ) : null}
 
-        {getIsPaymentPending(order.data) ? (
+        {order.data.isPaymentPending ? (
           <Alert title="Ожидаем подтверждение оплаты" tone="warning">
             <Spinner label="Ожидаем подтверждение оплаты" /> Не закрывайте страницу — статус
             обновится автоматически.
           </Alert>
         ) : null}
 
-        {getIsPaymentDeclined(payment.data) ? (
+        {payment.data?.isDeclined ? (
           <Alert title="Банк отклонил оплату">
             Попробуйте другую тестовую карту — заказ сохранён, его можно оплатить снова.
           </Alert>
         ) : null}
 
-        {getIsPaymentCancelled(payment.data) ? (
+        {payment.data?.isCancelled ? (
           <Alert title="Оплата отменена" tone="warning">
             Заказ сохранён. Вы можете оплатить его снова.
           </Alert>
         ) : null}
       </div>
 
-      {getCanPayOrder(order.data) ? (
+      {order.data.canPay ? (
         <div className={styles.actions}>
           <Button onClick={openPaymentForm}>
             {payment.data ? 'Оплатить снова' : 'Оплатить картой'}

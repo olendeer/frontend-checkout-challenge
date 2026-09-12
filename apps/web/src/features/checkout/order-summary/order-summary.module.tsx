@@ -1,6 +1,6 @@
 import { UseQueryResult } from '@tanstack/react-query';
 
-import { Quote } from 'domain/contracts';
+import { Quote } from 'domain/checkout';
 import { getErrorMessage } from 'domain/errors';
 import { Alert, Button, Card, Money, Spinner } from 'ui-kit';
 

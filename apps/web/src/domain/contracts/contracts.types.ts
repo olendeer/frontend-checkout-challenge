@@ -1,36 +1,30 @@
 import type { Static } from '@sinclair/typebox';
 import type {
-  Cart,
+  AddressSchema,
+  CartSchema,
   CheckoutOptionsSchema,
-  Order,
-  Payment,
+  OrderSchema,
+  PaymentSchema,
+  ProductSchema,
   SandboxSchema,
-  SessionSchema,
 } from '@checkout/contracts';
 
-export type {
-  Cart,
-  CreateOrder,
-  Customer,
-  Delivery,
-  Order,
-  Payment,
-  Product,
-  Quote,
-  Scenario,
-  Simulation,
-} from '@checkout/contracts';
+// Значимые типы контракта: их домен использует как есть. Агрегаты, которые приходят от API
+// целиком, поднимаются наверх сущностями из domain/<область>/entities.
+export type { CreateOrder, Customer, Delivery, Scenario } from '@checkout/contracts';
 
-export type Session = Static<typeof SessionSchema>;
-export type CheckoutOptions = Static<typeof CheckoutOptionsSchema>;
-export type Sandbox = Static<typeof SandboxSchema>;
+type CheckoutOptionsResponse = Static<typeof CheckoutOptionsSchema>;
+type OrderResponse = Static<typeof OrderSchema>;
 
-export type CartItem = Cart['items'][number];
-export type SandboxCard = Sandbox['cards'][number];
-export type DeliveryMethod = CheckoutOptions['deliveryMethods'][number];
+export type Address = Static<typeof AddressSchema>;
+export type CartItem = Static<typeof CartSchema>['items'][number];
+export type Currency = Static<typeof ProductSchema>['currency'];
+export type DeliveryMethod = CheckoutOptionsResponse['deliveryMethods'][number];
 export type DeliveryMethodId = DeliveryMethod['id'];
 export type PickupPoint = DeliveryMethod['pickupPoints'][number];
-export type PaymentMethod = Order['paymentMethod'];
-export type OrderStatus = Order['status'];
-export type PaymentStatus = Payment['status'];
-export type OrderPaymentStatus = Order['paymentStatus'];
+export type PaymentMethodOption = CheckoutOptionsResponse['paymentMethods'][number];
+export type SandboxCard = Static<typeof SandboxSchema>['cards'][number];
+export type PaymentMethod = OrderResponse['paymentMethod'];
+export type OrderStatus = OrderResponse['status'];
+export type OrderPaymentStatus = OrderResponse['paymentStatus'];
+export type PaymentStatus = Static<typeof PaymentSchema>['status'];

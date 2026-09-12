@@ -4,9 +4,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 
-import { getPickupPoints } from 'domain/checkout';
 import { PickupPoint } from 'domain/contracts';
-import { getIsPaymentTerminal } from 'domain/payment';
 import { usePaymentService } from 'providers/services.hooks';
 import { queryKeys, useCheckoutOptionsQuery, useLatestPaymentQuery, useOrderQuery } from 'query';
 
@@ -34,12 +32,15 @@ export const useOrderModule = (orderId: string) => {
   }, [orderId, orderPaymentStatus, queryClient]);
 
   useEffect(() => {
-    if (getIsPaymentTerminal(payment.data)) {
+    if (payment.data?.isTerminal) {
       paymentService.releaseAttempt(orderId);
     }
   }, [attemptStatus, orderId, payment.data, paymentService]);
 
-  const pickupPoints = useMemo<PickupPoint[]>(() => getPickupPoints(options.data), [options.data]);
+  const pickupPoints = useMemo<PickupPoint[]>(
+    () => options.data?.pickupPoints ?? [],
+    [options.data],
+  );
 
   return {
     closePaymentForm: () => setIsPaymentFormOpen(false),

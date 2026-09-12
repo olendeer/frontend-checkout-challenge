@@ -1,5 +1,7 @@
 import { RequestConfig } from 'core/http';
-import { Cart, CartItem } from 'domain/contracts';
+import { CartItem } from 'domain/contracts';
+
+import { Cart } from './entities';
 
 export interface CartService {
   getCart: (config?: RequestConfig) => Promise<Cart>;

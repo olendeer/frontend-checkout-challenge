@@ -1,8 +1,9 @@
 import { RequestConfig } from 'core/http';
 import { CartRepo } from 'data/repositories';
-import { Cart, CartItem } from 'domain/contracts';
+import { CartItem } from 'domain/contracts';
 
 import { CartService } from './cart.service';
+import { Cart } from './entities';
 
 export class CartServiceImpl implements CartService {
   constructor(private readonly _repo: CartRepo) {}

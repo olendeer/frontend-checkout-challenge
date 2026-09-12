@@ -8,8 +8,8 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import { CreateOrder, Order } from 'domain/contracts';
-import { getIsPaymentPending } from 'domain/order';
+import { CreateOrder } from 'domain/contracts';
+import { Order } from 'domain/order';
 import { useOrderService } from 'providers/services.hooks';
 
 import { queryKeys } from '../query-keys';
@@ -22,8 +22,7 @@ export const useOrderQuery = (orderId: string): UseQueryResult<Order> => {
   return useQuery({
     queryFn: ({ signal }) => order.getOrder(orderId, { signal }),
     queryKey: queryKeys.order(orderId),
-    refetchInterval: (query) =>
-      query.state.data && getIsPaymentPending(query.state.data) ? POLL_INTERVAL_MS : false,
+    refetchInterval: (query) => (query.state.data?.isPaymentPending ? POLL_INTERVAL_MS : false),
     staleTime: 0,
   });
 };

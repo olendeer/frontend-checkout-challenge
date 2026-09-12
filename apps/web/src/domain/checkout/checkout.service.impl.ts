@@ -1,9 +1,10 @@
 import { RequestConfig } from 'core/http';
 import { CartRepo, CheckoutRepo } from 'data/repositories';
-import { CheckoutOptions, Delivery, Quote } from 'domain/contracts';
+import { Delivery } from 'domain/contracts';
 import { ApiErrorCodes, getIsErrorCode } from 'domain/errors';
 
 import { CheckoutService } from './checkout.service';
+import { CheckoutOptions, Quote } from './entities';
 
 export class CheckoutServiceImpl implements CheckoutService {
   constructor(

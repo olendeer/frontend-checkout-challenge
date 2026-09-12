@@ -1,5 +1,7 @@
 import { RequestConfig } from 'core/http';
-import { Payment, Sandbox, Scenario } from 'domain/contracts';
+import { Scenario } from 'domain/contracts';
+
+import { Payment, Sandbox } from './entities';
 
 export interface PaymentService {
   getLatestPayment: (orderId: string, config?: RequestConfig) => Promise<Payment | null>;

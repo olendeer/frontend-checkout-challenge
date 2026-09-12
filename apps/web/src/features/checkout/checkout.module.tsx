@@ -1,6 +1,5 @@
 'use client';
 
-import { getIsCartEmpty } from 'domain/cart';
 import { getErrorMessage } from 'domain/errors';
 import { formatMoney } from 'domain/money';
 import {
@@ -46,7 +45,7 @@ export const CheckoutModule = () => {
     );
   }
 
-  if (getIsCartEmpty(cart.data)) {
+  if (!cart.data || cart.data.isEmpty) {
     return (
       <EmptyState
         action={<LinkButton href="/">Перейти в каталог</LinkButton>}
